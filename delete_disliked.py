@@ -157,11 +157,13 @@ try:
 
     for song in l.songs:
         try:
-            if song.rating:
-                if song.rating <= min_rating and song.location:
-                    songfile = urllib.url2pathname(urlparse.urlparse(song.location).path)
+            if song.rating and (song.rating <= min_rating) and song.location:
+                songfile = urllib.url2pathname(urlparse.urlparse(song.location).path)
+                if os.path.exists(songfile):
                     print 'Rating of %s is %s; deleting file %s' % (song.name, song.rating, songfile)
                     os.remove(songfile)
+                else:
+                    print "File %s does not exist, skipping..." % songfile
         except:
             print "Error in file:", songfile, sys.exc_value
             #continue
