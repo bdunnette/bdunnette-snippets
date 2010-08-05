@@ -1,7 +1,7 @@
 import time, re, sys, os, os.path, urlparse, urllib, codecs
 import unicodedata
-from mutagen.easyid3 import EasyID3
-from mutagen.mp3 import MP3
+#from mutagen.easyid3 import EasyID3
+#from mutagen.mp3 import MP3
     
 #The following code stolen from Clayton Parker's pyItunes -- http://github.com/liamks/pyitunes.git
 class Song:
@@ -144,33 +144,31 @@ def unquote(source):
 		return urllib.unquote(source)
 
 try:
+    if sys.argv[1]:
+        min_rating = int(sys.argv[1])
+    else:
+        min_rating = 40
+        
+    print "Minimum Rating set to ", min_rating
     itunesxml = os.path.expanduser("~/Music/iTunes/iTunes Music Library.xml")
-    print itunesxml
+    #print itunesxml
     pl = XMLLibraryParser(itunesxml)
     l = Library(pl.dictionary)
-    
+
     for song in l.songs:
         try:
-            if (song.name.find("-")) and (song.album == "BDunnette's Music Podcasts: SpokenWord.org (Brian Dunnette)"):
-                theURL = urlparse.urlparse(song.location)
-                thePath = unquote(theURL.path)
-                #audio = ID3(thePath)
-                audio = MP3(thePath, ID3=EasyID3)
-                #title_string = audio["title"].pop().encode('ascii', 'ignore')
-                title_string = song.name
-		title_stack = title_string.split("-")
-		print title_stack
-                title_title = unicode(title_stack.pop()).strip()
-                title_artist = unicode(title_stack.pop()).strip()
-                print song.name, " => Artist:", title_artist, " Track:", title_title
-                audio["title"] = title_title
-                audio["artist"] = title_artist
-		audio["album"] = ''
-                audio.save()
+            if song.rating:
+                if song.rating <= min_rating and song.location:
+                    songfile = urllib.url2pathname(urlparse.urlparse(song.location).path)
+                    print 'Rating of %s is %s; deleting file %s' % (song.name, song.rating, songfile)
+                    os.remove(songfile)
         except:
-            print "Error in file:", thePath, song.name
+            print "Error in file:", songfile, sys.exc_value
             #continue
-            
+
+except IndexError:
+    print "Please give a numeric value for your minimum rating -- files with ratings at or below this will be removed."
+
 except:
-    print "Unexpected error:", sys.exc_info()[0]
+	print "Unexpected error:", sys.exc_info()[0]
     
