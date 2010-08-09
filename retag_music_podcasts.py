@@ -1,8 +1,10 @@
+#!/usr/bin/python
+
 import time, re, sys, os, os.path, urlparse, urllib, codecs
 import unicodedata
 from mutagen.easyid3 import EasyID3
 from mutagen.mp3 import MP3
-    
+
 #The following code stolen from Clayton Parker's pyItunes -- http://github.com/liamks/pyitunes.git
 class Song:
     """
@@ -48,21 +50,21 @@ class Song:
     play_count = None
     location = None
     podcast = None
-    
+
     #title = property(getTitle,setTitle)
 
 class Library:
-    def __init__(self,dictionary):
+    def __init__(self, dictionary):
         self.songs = self.parseDictionary(dictionary)
-    
-    def parseDictionary(self,dictionary):
+
+    def parseDictionary(self, dictionary):
         songs = []
         format = "%Y-%m-%dT%H:%M:%SZ"
-        for song,attributes in dictionary.iteritems():
+        for song, attributes in dictionary.iteritems():
             s = Song()
             s.name = attributes.get('Name')
             s.artist = attributes.get('Artist')
-            s.album_artist = attributes.get('Album Aritst')
+            s.album_artist = attributes.get('Album Artist')
             s.composer = attributes.get('Composer')
             s.album = attributes.get('Album')
             s.genre = attributes.get('Genre')
@@ -74,9 +76,9 @@ class Library:
             if attributes.get('Year'):
                 s.year = int(attributes.get('Year'))
             if attributes.get('Date Modified'):
-                s.date_modified = time.strptime(attributes.get('Date Modified'),format)
+                s.date_modified = time.strptime(attributes.get('Date Modified'), format)
             if attributes.get('Date Added'):
-                s.date_added = time.strptime(attributes.get('Date Added'),format)
+                s.date_added = time.strptime(attributes.get('Date Added'), format)
             if attributes.get('Bit Rate'):
                 s.bit_rate = int(attributes.get('Bit Rate'))
             if attributes.get('Sample Rate'):
@@ -94,42 +96,42 @@ class Library:
         return songs
 
 class XMLLibraryParser:
-    def __init__(self,xmlLibrary):
+    def __init__(self, xmlLibrary):
         f = open(xmlLibrary)
         s = f.read()
         lines = s.split("\n")
         self.dictionary = self.parser(lines)
-    
-    def getValue(self,restOfLine):
-        value = re.sub("<.*?>","",restOfLine)
-        u = unicode(value,"utf-8")
-        cleanValue = u.encode("ascii","xmlcharrefreplace")
+
+    def getValue(self, restOfLine):
+        value = re.sub("<.*?>", "", restOfLine)
+        u = unicode(value, "utf-8")
+        cleanValue = u.encode("ascii", "xmlcharrefreplace")
         return cleanValue
-    
-    def keyAndRestOfLine(self,line):
-        rawkey = re.search('<key>(.*?)</key>',line).group(0)
-        key = re.sub("</*key>","",rawkey)
-        restOfLine = re.sub("<key>.*?</key>","",line).strip()
-        return key,restOfLine
-    
-    def parser(self,lines):
+
+    def keyAndRestOfLine(self, line):
+        rawkey = re.search('<key>(.*?)</key>', line).group(0)
+        key = re.sub("</*key>", "", rawkey)
+        restOfLine = re.sub("<key>.*?</key>", "", line).strip()
+        return key, restOfLine
+
+    def parser(self, lines):
         dicts = 0
         songs = {}
         inSong = False
         for line in lines:
-            if re.search('<dict>',line):
+            if re.search('<dict>', line):
                 dicts += 1
-            if re.search('</dict>',line):
+            if re.search('</dict>', line):
                 dicts -= 1
                 inSong = False
                 songs[songkey] = temp
-            if dicts == 2 and re.search('<key>(.*?)</key>',line):
-                rawkey = re.search('<key>(.*?)</key>',line).group(0)
-                songkey = re.sub("</*key>","",rawkey)
+            if dicts == 2 and re.search('<key>(.*?)</key>', line):
+                rawkey = re.search('<key>(.*?)</key>', line).group(0)
+                songkey = re.sub("</*key>", "", rawkey)
                 inSong = True
                 temp = {}
-            if dicts == 3 and re.search('<key>(.*?)</key>',line):
-                key,restOfLine = self.keyAndRestOfLine(line)
+            if dicts == 3 and re.search('<key>(.*?)</key>', line):
+                key, restOfLine = self.keyAndRestOfLine(line)
                 temp[key] = self.getValue(restOfLine)
             if len(songs) > 0 and dicts < 2:
                 return songs
@@ -145,32 +147,37 @@ def unquote(source):
 
 try:
     itunesxml = os.path.expanduser("~/Music/iTunes/iTunes Music Library.xml")
-    print itunesxml
+    print "Using library file: ", itunesxml
     pl = XMLLibraryParser(itunesxml)
     l = Library(pl.dictionary)
-    
+
     for song in l.songs:
         try:
-            if (song.name.find("-")) and (song.album == "BDunnette's Music Podcasts: SpokenWord.org (Brian Dunnette)"):
+            if song.name.find('-') > 0 and not song.album:
                 theURL = urlparse.urlparse(song.location)
                 thePath = unquote(theURL.path)
                 #audio = ID3(thePath)
                 audio = MP3(thePath, ID3=EasyID3)
                 #title_string = audio["title"].pop().encode('ascii', 'ignore')
                 title_string = song.name
-		title_stack = title_string.split("-")
-		print title_stack
-                title_title = unicode(title_stack.pop()).strip()
-                title_artist = unicode(title_stack.pop()).strip()
+                title_stack = title_string.split("-")
+                print title_stack
+                title_title = unicode(title_stack.pop().strip())
+                title_artist = unicode(title_stack.pop().strip())
                 print song.name, " => Artist:", title_artist, " Track:", title_title
                 audio["title"] = title_title
-                audio["artist"] = title_artist
-		audio["album"] = ''
+                if (song.artist == 'MPR') or (not song.artist):
+                    audio["artist"] = title_artist
+                audio["album"] = ''
+                audio["genre"] = ''
                 audio.save()
+
         except:
-            print "Error in file:", thePath, song.name
-            #continue
-            
+            #print "Error in file: ", song.location, song.name
+            continue
+
+
 except:
-    print "Unexpected error:", sys.exc_info()[0]
-    
+    print "Unexpected error:", sys.exc_info()
+
+

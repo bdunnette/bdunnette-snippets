@@ -1,3 +1,5 @@
+#!/usr/bin/python
+
 import time, re, sys, os, os.path, urlparse, urllib, codecs
 import unicodedata
 #from mutagen.easyid3 import EasyID3
