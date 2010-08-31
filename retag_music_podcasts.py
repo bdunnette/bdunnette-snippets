@@ -153,7 +153,7 @@ try:
 
     for song in l.songs:
         try:
-            if song.name.find('-') > 0 and not song.album:
+            if ((song.name.find('-') > 0) or (song.name.find(':') > 0)) and not song.album:
                 theURL = urlparse.urlparse(song.location)
                 thePath = unquote(theURL.path)
                 #audio = ID3(thePath)
@@ -161,7 +161,7 @@ try:
                 #title_string = audio["title"].pop().encode('ascii', 'ignore')
                 title_string = song.name
                 title_stack = title_string.split("-")
-                print title_stack
+                #print title_stack
                 title_title = unicode(title_stack.pop().strip())
                 title_artist = unicode(title_stack.pop().strip())
                 print song.name, " => Artist:", title_artist, " Track:", title_title
