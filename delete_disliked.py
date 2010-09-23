@@ -151,7 +151,7 @@ try:
     else:
         min_rating = 40
         
-    print "Minimum Rating set to ", min_rating
+    #print "Minimum Rating set to ", min_rating
     itunesxml = os.path.expanduser("~/Music/iTunes/iTunes Music Library.xml")
     #print itunesxml
     pl = XMLLibraryParser(itunesxml)
