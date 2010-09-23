@@ -157,25 +157,34 @@ try:
 
 	for song in l.songs:
 		try:
-			if ((song.name.find(song.artist) > 0) or (song.name.find(":") > 0) or (song.name.find("-") > 0)) and (not song.album):
-			    theURL = urlparse.urlparse(song.location)
-			    thePath = unquote(theURL.path)
-			    #print timestamp(), " Evaluating file ", thePath
-			    #audio = ID3(thePath)
-			    audio = MP3(thePath, ID3=EasyID3)
-			    #title_string = audio["title"].pop().encode('ascii', 'ignore')
-			    title_string = song.name
-			    title_stack = title_string.split("-")
-			    title_stack = title_string.split(":")
-			    title_title = unicode(title_stack.pop().strip())
-			    title_artist = unicode(title_stack.pop().strip())
-			    print timestamp(), " ", song.name, " => Artist:", title_artist, " Track:", title_title
-			    audio["title"] = title_title
-			    if (song.artist == 'MPR') or (not song.artist):
-			        audio["artist"] = title_artist
-			    audio["album"] = ''
-			    audio["genre"] = ''
-			    audio.save()
+			if (song.album is None) and (song.genre is not "Podcast"):
+				theURL = urlparse.urlparse(song.location)
+			        thePath = unquote(theURL.path)
+		        	#print timestamp(), " Evaluating file ", thePath
+		        	#audio = ID3(thePath)
+		        	audio = MP3(thePath, ID3=EasyID3)
+		        	#title_string = audio["title"].pop().encode('ascii', 'ignore')
+				artist_in_title = song.name.find(song.artist)
+				dash_in_title = song.name.find("-")
+				colon_in_title = song.name.find(":")
+		        	if artist_in_title or colon_in_title or dash_in_title:
+			        	#print timestamp(), " Evaluating ", song.name, artist_in_title, colon_in_title, dash_in_title
+			        	title_string = song.name
+   			        	if dash_in_title > -1:
+						#print title_string[:dash_in_title]
+						title_stack = title_string.split("-")
+			        	if colon_in_title > -1:
+						#print title_string[:colon_in_title]
+						title_stack = title_string.split(":")
+			        	title_title = unicode(title_stack.pop().strip())
+			        	title_artist = unicode(title_stack.pop().strip())
+			        	print timestamp(), " ", song.name, " => Artist:", title_artist, " Track:", title_title
+			        	audio["title"] = title_title
+			        	if (song.artist == 'MPR') or (not song.artist):
+			            		audio["artist"] = title_artist
+			        	audio["album"] = ''
+			        	audio["genre"] = ''
+			        	audio.save()
 
 		except:
 			#print "Error in file: ", song.location, song.name
