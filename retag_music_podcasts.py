@@ -157,7 +157,7 @@ try:
 
 	for song in l.songs:
 		try:
-			if (song.album is None) and (song.genre is not "Podcast"):
+			if song.genre is "Music Podcast":
 				theURL = urlparse.urlparse(song.location)
 			        thePath = unquote(theURL.path)
 		        	#print timestamp(), " Evaluating file ", thePath
