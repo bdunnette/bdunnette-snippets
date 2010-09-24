@@ -150,31 +150,31 @@ def timestamp():
     return "%02d.%02d.%04d %02d:%02d:%02d" % (lt[2], lt[1], lt[0], lt[3], lt[4], lt[5])
 
 try:
+        debug = False
 	itunesxml = os.path.expanduser("~/Music/iTunes/iTunes Music Library.xml")
-	#print timestamp(), " Using library file: ", itunesxml
+	if debug is True:
+                print timestamp(), " Using library file: ", itunesxml
 	pl = XMLLibraryParser(itunesxml)
 	l = Library(pl.dictionary)
 
 	for song in l.songs:
 		try:
-			if song.genre is "Music Podcast":
+                        if debug is True:
+                                print song.genre
+			if (song.genre is None) and (song.album is None):
 				theURL = urlparse.urlparse(song.location)
 			        thePath = unquote(theURL.path)
-		        	#print timestamp(), " Evaluating file ", thePath
-		        	#audio = ID3(thePath)
+		        	if debug is True:
+                                        print timestamp(), " Evaluating file ", thePath
 		        	audio = MP3(thePath, ID3=EasyID3)
-		        	#title_string = audio["title"].pop().encode('ascii', 'ignore')
-				artist_in_title = song.name.find(song.artist)
+		        	artist_in_title = song.name.find(song.artist)
 				dash_in_title = song.name.find("-")
 				colon_in_title = song.name.find(":")
 		        	if artist_in_title or colon_in_title or dash_in_title:
-			        	#print timestamp(), " Evaluating ", song.name, artist_in_title, colon_in_title, dash_in_title
 			        	title_string = song.name
    			        	if dash_in_title > -1:
-						#print title_string[:dash_in_title]
 						title_stack = title_string.split("-")
 			        	if colon_in_title > -1:
-						#print title_string[:colon_in_title]
 						title_stack = title_string.split(":")
 			        	title_title = unicode(title_stack.pop().strip())
 			        	title_artist = unicode(title_stack.pop().strip())
