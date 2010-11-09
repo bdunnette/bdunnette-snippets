@@ -1,7 +1,8 @@
 #!/usr/bin/python
 import xmlrpclib
+import sys
 
-endpoint = "http://user:pass@server:8069/tryton"
+endpoint = sys.argv[1]
 server = xmlrpclib.ServerProxy(endpoint)
 
 try:
