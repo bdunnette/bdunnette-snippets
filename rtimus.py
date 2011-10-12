@@ -24,6 +24,6 @@ jid=xmpp.protocol.JID(jidparams['jid'])
 cl=xmpp.Client(jid.getDomain(),debug=[])
 cl.connect()
 cl.auth(jid.getNode(),jidparams['password'])
-cl.sendInitialPresence()
+#cl.sendInitialPresence()
 cl.send(xmpp.protocol.Message(tojid,text))
 
