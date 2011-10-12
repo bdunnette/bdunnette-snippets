@@ -13,7 +13,6 @@ if os.access(os.environ['HOME']+'/.xsend',os.R_OK):
     for ln in open(os.environ['HOME']+'/.xsend').readlines():
         key,val=ln.strip().split('=',1)
         jidparams[key.lower()]=val
-print jidparams
 	
 for mandatory in ['jid','password']:
     if mandatory not in jidparams.keys():
