@@ -17,7 +17,7 @@ if os.access(os.environ['HOME']+'/.xsend',os.R_OK):
 #	    if mandatory not in jidparams.keys():
 #		open(os.environ['HOME']+'/.xsend','w').write('#JID=romeo@montague.net\n#PASSWORD=juliet\n')
 #		print 'Please ensure the ~/.xsend file has valid JID for sending messages.'
-    		sys.exit(0)
+#    		sys.exit(0)
 
 jid=xmpp.protocol.JID(jidparams['jid'])
 cl=xmpp.Client(jid.getDomain(),debug=[])
