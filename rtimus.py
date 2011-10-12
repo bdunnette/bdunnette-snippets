@@ -22,8 +22,8 @@ for mandatory in ['jid','password']:
 	sys.exit(0)
 
 jid=xmpp.protocol.JID(jidparams['jid'])
-cl=xmpp.Client(jid.getDomain(),debug=[])
-cl.connect((jidparams['gtalk_server'],5222))
+cl=xmpp.Client('gmail.com',debug=[])
+cl.connect()
 cl.auth(jid.getNode(),jidparams['password'])
 #cl.sendInitialPresence()
 cl.send(xmpp.protocol.Message(tojid,text))
