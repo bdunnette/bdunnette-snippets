@@ -7,3 +7,7 @@ try:
     server.common.db.list(None,None)
     a = json.loads( jsonrpclib.history.response)
     print(a["result"])
+
+except:
+    a = json.loads( jsonrpclib.history.response)
+    print "error: ", a["error"]
