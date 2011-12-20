@@ -2,10 +2,10 @@ from jsonrpclib import Server as ServerProxy
 import jsonrpclib
 import json
 
-server = ServerProxy('http://admin:test@localhost:8000')
+server = ServerProxy('http://admin:test@localhost:8000', verbose=1)
 try:
     server.common.db.list(None,None)
-    server.common.Introspect()
+    server.common.
     a = json.loads( jsonrpclib.history.response)
     print(a["result"])
 
