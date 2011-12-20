@@ -8,7 +8,7 @@ try:
     a = json.loads( jsonrpclib.history.response)
     print(a["result"])
     
-    server.common.listMethods(None, None)
+    server.common.list_methods(None, None)
     a = json.loads( jsonrpclib.history.response)
     print(a["result"])
 
