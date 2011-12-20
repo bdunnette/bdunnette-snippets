@@ -5,13 +5,13 @@ import json
 server = ServerProxy('http://admin:test@localhost:8000')
 try:
     server.common.db.list(None,None)
-    a = json.loads( jsonrpclib.history.response)
+    a = json.loads(jsonrpclib.history.response)
     print(a["result"])
     
     server.model.invoice.search(None,None)
-    a = json.loads( jsonrpclib.history.response)
+    a = json.loads(jsonrpclib.history.response)
     print(a["result"])
 
 except:
-    a = json.loads( jsonrpclib.history.response)
+    a = json.loads(jsonrpclib.history.response)
     print "error: ", a["error"]
