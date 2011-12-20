@@ -8,7 +8,7 @@ try:
     a = json.loads(jsonrpclib.history.response)
     print(a["result"])
     
-    server.common.model.invoice.search(None,None)
+    server.model.invoice.search(None,None)
     a = json.loads(jsonrpclib.history.response)
     print(a["result"])
 
