@@ -5,7 +5,7 @@ import json
 server = ServerProxy('http://admin:test@localhost:8000', verbose=1)
 try:
     server.common.db.list(None,None)
-    server.listMethods()
+    server.listMethods(None, None)
     a = json.loads( jsonrpclib.history.response)
     print(a["result"])
 
