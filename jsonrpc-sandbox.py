@@ -7,6 +7,7 @@ try:
     server.common.db.list(None,None)
     a = json.loads( jsonrpclib.history.response)
     print(a["result"])
+    
     server.common.listMethods(None, None)
     a = json.loads( jsonrpclib.history.response)
     print(a["result"])
