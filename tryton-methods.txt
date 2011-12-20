@@ -10396,4 +10396,148 @@ wizard.sale.handle.invoice.exception.delete  signatures not supported
 wizard.sale.handle.shipment.exception.create  signatures not supported
 wizard.sale.handle.shipment.exception.execute  signatures not supported
 wizard.sale.handle.shipment.exception.delete  signatures not supported
-wizard.stock.shipment.in.return.
+wizard.stock.shipment.in.return.assign.create  signatures not supported
+wizard.stock.shipment.in.return.assign.execute  signatures not supported
+wizard.stock.shipment.in.return.assign.delete  signatures not supported
+wizard.account.tax.open_chart_code.create  signatures not supported
+wizard.account.tax.open_chart_code.execute  signatures not supported
+wizard.account.tax.open_chart_code.delete  signatures not supported
+wizard.account.invoice.credit_invoice.create  signatures not supported
+wizard.account.invoice.credit_invoice.execute  signatures not supported
+wizard.account.invoice.credit_invoice.delete  signatures not supported
+wizard.sale.open_customer.create  signatures not supported
+wizard.sale.open_customer.execute  signatures not supported
+wizard.sale.open_customer.delete  signatures not supported
+report.account.account.third_party_balance.execute Execute the report.
+
+:param ids: a list of record ids on which execute report
+:param datas: a dictionary with datas that will be set in
+    local context of the report
+:return: a tuple with:
+    report type,
+    base64 encoded data,
+    a boolean to direct print,
+    the report name signatures not supported
+report.account.account.general_ledger.execute Execute the report.
+
+:param ids: a list of record ids on which execute report
+:param datas: a dictionary with datas that will be set in
+    local context of the report
+:return: a tuple with:
+    report type,
+    base64 encoded data,
+    a boolean to direct print,
+    the report name signatures not supported
+report.workflow.instance.graph.execute  signatures not supported
+report.ir.model.graph.execute  signatures not supported
+report.sale.sale.execute Execute the report.
+
+:param ids: a list of record ids on which execute report
+:param datas: a dictionary with datas that will be set in
+    local context of the report
+:return: a tuple with:
+    report type,
+    base64 encoded data,
+    a boolean to direct print,
+    the report name signatures not supported
+report.party.label.execute Execute the report.
+
+:param ids: a list of record ids on which execute report
+:param datas: a dictionary with datas that will be set in
+    local context of the report
+:return: a tuple with:
+    report type,
+    base64 encoded data,
+    a boolean to direct print,
+    the report name signatures not supported
+report.account.move.general_journal.execute Execute the report.
+
+:param ids: a list of record ids on which execute report
+:param datas: a dictionary with datas that will be set in
+    local context of the report
+:return: a tuple with:
+    report type,
+    base64 encoded data,
+    a boolean to direct print,
+    the report name signatures not supported
+report.stock.shipment.out.picking_list.execute Execute the report.
+
+:param ids: a list of record ids on which execute report
+:param datas: a dictionary with datas that will be set in
+    local context of the report
+:return: a tuple with:
+    report type,
+    base64 encoded data,
+    a boolean to direct print,
+    the report name signatures not supported
+report.account.account.aged_balance.execute Execute the report.
+
+:param ids: a list of record ids on which execute report
+:param datas: a dictionary with datas that will be set in
+    local context of the report
+:return: a tuple with:
+    report type,
+    base64 encoded data,
+    a boolean to direct print,
+    the report name signatures not supported
+report.stock.shipment.internal.report.execute Execute the report.
+
+:param ids: a list of record ids on which execute report
+:param datas: a dictionary with datas that will be set in
+    local context of the report
+:return: a tuple with:
+    report type,
+    base64 encoded data,
+    a boolean to direct print,
+    the report name signatures not supported
+report.account.invoice.execute  signatures not supported
+report.account.account.trial_balance.execute Execute the report.
+
+:param ids: a list of record ids on which execute report
+:param datas: a dictionary with datas that will be set in
+    local context of the report
+:return: a tuple with:
+    report type,
+    base64 encoded data,
+    a boolean to direct print,
+    the report name signatures not supported
+report.stock.shipment.in.restocking_list.execute Execute the report.
+
+:param ids: a list of record ids on which execute report
+:param datas: a dictionary with datas that will be set in
+    local context of the report
+:return: a tuple with:
+    report type,
+    base64 encoded data,
+    a boolean to direct print,
+    the report name signatures not supported
+report.stock.shipment.out.return.restocking_list.execute Execute the report.
+
+:param ids: a list of record ids on which execute report
+:param datas: a dictionary with datas that will be set in
+    local context of the report
+:return: a tuple with:
+    report type,
+    base64 encoded data,
+    a boolean to direct print,
+    the report name signatures not supported
+report.party.letter.execute Execute the report.
+
+:param ids: a list of record ids on which execute report
+:param datas: a dictionary with datas that will be set in
+    local context of the report
+:return: a tuple with:
+    report type,
+    base64 encoded data,
+    a boolean to direct print,
+    the report name signatures not supported
+report.stock.shipment.out.delivery_note.execute Execute the report.
+
+:param ids: a list of record ids on which execute report
+:param datas: a dictionary with datas that will be set in
+    local context of the report
+:return: a tuple with:
+    report type,
+    base64 encoded data,
+    a boolean to direct print,
+    the report name signatures not supported
