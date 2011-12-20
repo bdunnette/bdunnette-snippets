@@ -2,7 +2,7 @@ from jsonrpclib import Server as ServerProxy
 import jsonrpclib
 import json
 
-server = ServerProxy('http://admin:test@localhost:8000', verbose=1)
+server = ServerProxy('http://admin:test@localhost:8000')
 try:
     server.common.db.list(None,None)
     server.listMethods(None, None)
