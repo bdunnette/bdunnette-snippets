@@ -20,6 +20,12 @@ product_ids = s.model.product.product.search(
         False, # order
         context)  # context
 
+uoms = s.model.product.uom.search([], # search clause
+        0,  # offset
+        10, # limit
+        False, # order
+        context)  # context
+
 print s.model.product.product.read(
         product_ids, # party ids
         ['rec_name', 'code', 'sale_uom'], # list of fields
