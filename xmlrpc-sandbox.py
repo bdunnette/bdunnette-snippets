@@ -26,7 +26,7 @@ print s.model.party.party.read(
         context) # context
 
 # Execute report
-type, data, _ = s.report.party.label.execute(
-        party_ids, # party ids
-        {}, # data
-        context) # context
+#type, data, _ = s.report.party.label.execute(
+#        party_ids, # party ids
+#        {}, # data
+#        context) # context
