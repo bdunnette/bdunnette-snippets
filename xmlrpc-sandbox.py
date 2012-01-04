@@ -26,6 +26,8 @@ uoms = s.model.product.uom.search([], # search clause
         False, # order
         context)  # context
 
+print uoms
+
 print s.model.product.product.read(
         product_ids, # party ids
         ['rec_name', 'code', 'sale_uom'], # list of fields
