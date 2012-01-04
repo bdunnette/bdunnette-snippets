@@ -1,7 +1,7 @@
 import xmlrpclib
 
-PASSWORD = 'admin'
-USER = "test"
+PASSWORD = 'test'
+USER = 'admin'
 
 # Get user_id and session
 s = xmlrpclib.ServerProxy ('http://%s:%s@localhost:8069/test' % (USER, PASSWORD))
