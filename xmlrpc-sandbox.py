@@ -4,6 +4,7 @@ import sys
 
 endpoint = sys.argv[1]
 server = xmlrpclib.ServerProxy(endpoint)
+uid = sock_common.login(sys.argv[2], sys.argv[3], sys.argv[4])
 
 try:
     server.__request('model.party.party.search', params)
