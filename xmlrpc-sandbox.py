@@ -14,7 +14,7 @@ methods = s.system.listMethods()
 
 # Search parties and print rec_name
 party_ids = s.model.party.party.search(
-        [('name', 'LIKE', 'Buster Bot')], # search clause
+        [('name', '=', 'Buster')], # search clause
         0,  # offset
         10, # limit
         False, # order
