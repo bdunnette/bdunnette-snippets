@@ -13,7 +13,7 @@ context = s.model.res.user.get_preferences(True, {})
 methods = s.system.listMethods()
 
 # Search parties and print rec_name
-party_ids = s.model.party.party.search(
+party_ids = s.model.product.product.search(
         [('name', 'like', 'Buster')], # search clause
         0,  # offset
         10, # limit
