@@ -5,7 +5,7 @@ import sys
 try:
     endpoint = sys.argv[1]
     server = xmlrpclib.ServerProxy(endpoint)
-    uid = server.login(sys.argv[2], sys.argv[3], sys.argv[4])
+    #uid = server.login(sys.argv[2], sys.argv[3], sys.argv[4])
     sock = xmlrpclib.ServerProxy(endpoint)
 
     args = [('name', '=', 'Buster Bot')]
