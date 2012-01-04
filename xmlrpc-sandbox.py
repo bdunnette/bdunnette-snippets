@@ -9,7 +9,7 @@ try:
     #sock = xmlrpclib.ServerProxy(endpoint)
 
     args = [('name', '=', 'Buster Bot')]
-    ids = server.model.party.party.search(['name', '=', 'Buster Bot'])
+    ids = server.model.party.party.search(args)
 except xmlrpclib.ProtocolError, err:
     print "A protocol error occurred"
     print "URL: %s" % err.url
