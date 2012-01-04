@@ -10,7 +10,7 @@ s = xmlrpclib.ServerProxy ('http://%s:%s@localhost:8069/test' % (USER, PASSWORD)
 context = s.model.res.user.get_preferences(True, {})
 
 # Print all methods (introspection)
-#print s.system.listMethods()
+methods = s.system.listMethods()
 
 # Search parties and print rec_name
 party_ids = s.model.party.party.search(
