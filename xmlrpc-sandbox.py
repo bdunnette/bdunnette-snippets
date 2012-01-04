@@ -2,12 +2,14 @@
 import xmlrpclib
 import sys
 
-endpoint = sys.argv[1]
-server = xmlrpclib.ServerProxy(endpoint)
-uid = sock_common.login(sys.argv[2], sys.argv[3], sys.argv[4])
-
 try:
-    server.__request('model.party.party.search', params)
+    endpoint = sys.argv[1]
+    server = xmlrpclib.ServerProxy(endpoint)
+    uid = sock_common.login(sys.argv[2], sys.argv[3], sys.argv[4])
+    sock = xmlrpclib.ServerProxy(endpoint)
+
+    args = [('name', '=', 'Buster Bot')]
+    ids = sock.execute(sys.argv[2], uid, sys.argv[4], 'model.party.party', 'search', args)
 except xmlrpclib.ProtocolError, err:
     print "A protocol error occurred"
     print "URL: %s" % err.url
