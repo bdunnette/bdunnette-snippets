@@ -33,6 +33,9 @@ print s.model.product.product.read(
         ['rec_name', 'code', 'sale_uom'], # list of fields
         context) # context
 
+sale = s.model.sale.sale.create()
+print sale
+
 # Execute report
 #type, data, _ = s.report.party.label.execute(
 #        party_ids, # party ids
