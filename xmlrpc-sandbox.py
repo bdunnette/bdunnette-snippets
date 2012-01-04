@@ -13,7 +13,7 @@ context = s.model.res.user.get_preferences(True, {})
 methods = s.system.listMethods()
 
 # Search parties and print rec_name
-party_ids = s.model.product.product.search(
+product_ids = s.model.product.product.search(
         [], # search clause
         0,  # offset
         10, # limit
@@ -21,8 +21,8 @@ party_ids = s.model.product.product.search(
         context)  # context
 
 print s.model.product.product.read(
-        party_ids, # party ids
-        [], # list of fields
+        product_ids, # party ids
+        ['', 'code', 'sale_uom'], # list of fields
         context) # context
 
 # Execute report
