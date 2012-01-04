@@ -8,6 +8,7 @@ s = xmlrpclib.ServerProxy ('http://%s:%s@localhost:8069/test' % (USER, PASSWORD)
 
 # Get the user context
 context = s.model.res.user.get_preferences(True, {})
+print context
 
 # Print all methods (introspection)
 methods = s.system.listMethods()
