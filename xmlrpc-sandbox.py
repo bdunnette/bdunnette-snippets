@@ -26,7 +26,7 @@ uoms = s.model.product.uom.search([], # search clause
         False, # order
         context)  # context
 
-print s.model.product.uom.read(uoms, ['symbol'], context)
+print s.model.product.uom.read(uoms, ['name', 'symbol'], context)
 
 print s.model.product.product.read(
         product_ids, # party ids
