@@ -14,7 +14,7 @@ methods = s.system.listMethods()
 
 # Search parties and print rec_name
 party_ids = s.model.party.party.search(
-        [], # search clause
+        [('name', '=', 'Buster Bot')], # search clause
         0,  # offset
         10, # limit
         False, # order
@@ -26,7 +26,7 @@ print s.model.party.party.read(
         context) # context
 
 # Execute report
-#type, data, _ = s.report.party.label.execute(
-#        party_ids, # party ids
-#        {}, # data
-#        context) # context
+type, data, _ = s.report.party.label.execute(
+        party_ids, # party ids
+        {}, # data
+        context) # context
