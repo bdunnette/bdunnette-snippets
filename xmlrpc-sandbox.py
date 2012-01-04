@@ -1,10 +1,10 @@
 import xmlrpclib
 
 PASSWORD = 'admin'
-USER = "admin"
+USER = "test"
 
 # Get user_id and session
-s = xmlrpclib.ServerProxy ('http://%s:%s@localhost:8069/try' % (USER, PASSWORD))
+s = xmlrpclib.ServerProxy ('http://%s:%s@localhost:8069/test' % (USER, PASSWORD))
 
 # Get the user context
 context = s.model.res.user.get_preferences(True, {})
