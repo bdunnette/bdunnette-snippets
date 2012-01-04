@@ -33,7 +33,7 @@ print s.model.product.product.read(
         ['rec_name', 'code', 'sale_uom'], # list of fields
         context) # context
 
-sale = s.model.sale.sale.default_get([], True)
+sale = s.model.sale.sale.default_get([], True, context)
 print sale
 
 # Execute report
