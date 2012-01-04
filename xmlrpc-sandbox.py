@@ -1,24 +1,32 @@
-#!/usr/bin/python
 import xmlrpclib
-import sys
 
-try:
-    endpoint = sys.argv[1]
-    server = xmlrpclib.ServerProxy(endpoint)
-    #uid = server.login(sys.argv[2], sys.argv[3], sys.argv[4])
-    #sock = xmlrpclib.ServerProxy(endpoint)
+PASSWORD = 'admin'
+USER = "admin"
 
-    args = [('name', '=', 'Buster Bot')]
-    ids = server.model.party.party.search(args)
-except xmlrpclib.ProtocolError, err:
-    print "A protocol error occurred"
-    print "URL: %s" % err.url
-    print "HTTP/HTTPS headers: %s" % err.headers
-    print "Error code: %d" % err.errcode
-    print "Error message: %s" % err.errmsg
-except xmlrpclib.Fault, err:
-    print "A fault occurred"
-    print "Fault code: %d" % err.faultCode
-    print "Fault string: %s" % err.faultString
+# Get user_id and session
+s = xmlrpclib.ServerProxy ('http://%s:%s@localhost:8069/try' % (USER, PASSWORD))
 
+# Get the user context
+context = s.model.res.user.get_preferences(True, {})
 
+# Print all methods (introspection)
+print s.system.listMethods()
+
+# Search parties and print rec_name
+party_ids = s.model.party.party.search(
+        [], # search clause
+        0,  # offset
+        10, # limit
+        False, # order
+        context)  # context
+
+print s.model.party.party.read(
+        party_ids, # party ids
+        ['rec_name'], # list of fields
+        context) # context
+
+# Execute report
+type, data, _ = s.report.party.label.execute(
+        party_ids, # party ids
+        {}, # data
+        context) # context
