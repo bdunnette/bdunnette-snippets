@@ -22,7 +22,7 @@ product_ids = s.model.product.product.search(
 
 print s.model.product.product.read(
         product_ids, # party ids
-        ['', 'code', 'sale_uom'], # list of fields
+        ['rec_name', 'code', 'sale_uom'], # list of fields
         context) # context
 
 # Execute report
