@@ -20,7 +20,7 @@ party_ids = s.model.product.product.search(
         False, # order
         context)  # context
 
-print s.model.party.party.read(
+print s.model.product.product.read(
         party_ids, # party ids
         ['rec_name'], # list of fields
         context) # context
