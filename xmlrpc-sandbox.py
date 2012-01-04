@@ -22,7 +22,7 @@ product_ids = s.model.product.product.search(
 
 uoms = s.model.product.uom.search([], # search clause
         0,  # offset
-        10, # limit
+        1000, # limit
         False, # order
         context)  # context
 
