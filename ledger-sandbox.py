@@ -4,4 +4,4 @@ from beancount.ledger import Ledger
 
 ledger_file = open("fgtc-2011.journal")
 ledger = Ledger()
-print ledger_file, ledger
+ledger.parse_file(ledger_file, 'fgtc-2011.journal', encoding)
