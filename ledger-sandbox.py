@@ -1,7 +1,9 @@
 #!/usr/bin/python
 
+import sys
 from beancount.ledger import Ledger
 
-ledger_file = open("fgtc-2011.journal")
+ledger_file_name = sys.argv[1]
+ledger_file_object = open(ledger_file_name)
 ledger = Ledger()
-ledger.parse_file(ledger_file, 'fgtc-2011.journal')
+ledger.parse_file(ledger_file_object, ledger_file_name)
