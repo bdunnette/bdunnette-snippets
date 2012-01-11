@@ -1,3 +1,7 @@
 #!/usr/bin/python
 
-from relatorio
+from relatorio.templates.opendocument import Template
+
+
+
+
