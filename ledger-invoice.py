@@ -12,7 +12,7 @@ transactions = infile.split(transaction_separator)
 
 for transaction in transactions:
     transaction_dict = dict()
-    transaction_invoiced = False
+    transaction_dict['invoiced'] = False
     transaction_amount = False
     transaction_lines = transaction.splitlines()
     #The first line of each transaction is its overall description
@@ -21,7 +21,6 @@ for transaction in transactions:
     #Check the remaining lines to see if this transaction has already been invoiced
     for line in transaction_lines[1:]:
         if line.strip().replace(' ','').startswith(';invoiced'):
-            transaction_invoiced = True
             transaction_dict['invoiced'] = True
         elif not transaction_amount and (len(line.rsplit('  ',1)) > 1):
             transaction_amount = line.rsplit('  ',1)[-1]
