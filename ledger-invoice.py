@@ -18,6 +18,7 @@ for transaction in transactions:
     transaction_lines = transaction.splitlines()
     #The first line of each transaction is its overall description
     description_line = transaction_lines[0]
+    print description_line.split()
     
     #Check the remaining lines to see if this transaction has already been invoiced
     for line in transaction_lines[1:]:
