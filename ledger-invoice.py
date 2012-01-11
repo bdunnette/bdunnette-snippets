@@ -19,6 +19,8 @@ for transaction in transactions:
     for line in transaction_lines:
         if line.strip().replace(' ','').startswith(';invoiced'):
             transaction_invoiced = True
+        else:
+            print line.strip().split()
             
     print description_line, transaction_invoiced
     invoice_generated = invoice.generate(o=ledger_invoice).render()
