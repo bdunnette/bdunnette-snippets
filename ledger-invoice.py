@@ -27,7 +27,7 @@ for transaction in transactions:
             
     print description_line, transaction_amount
     print transaction_dict
-    invoice_generated = invoice_template.generate(invoice=transaction_dict).render()
+    #invoice_generated = invoice_template.generate(invoice=transaction_dict).render()
     #file(description_line + '.odt', 'wb').write(invoice_generated.getvalue())
 
 
