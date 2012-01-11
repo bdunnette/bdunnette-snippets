@@ -10,7 +10,15 @@ infile = file(sys.argv[1]).read()
 transactions = infile.split(transaction_separator)
 
 for transaction in transactions:
-    print transaction.splitlines()
+    transaction_invoiced = False
+    transaction_lines = transaction.splitlines()
+    #The first line of each transaction is its overall description
+    description_line = transaction_lines[0]
+    for line in transaction_lines:
+        if transaction_line.strip().startswith(';invoiced'):
+            transaction_invoiced = True
+    
+    
 
 basic = Template(source=None, filepath='invoice.odt')
 basic_generated = basic.generate(o=bonham_invoice).render()
