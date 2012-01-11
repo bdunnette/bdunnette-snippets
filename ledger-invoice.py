@@ -17,6 +17,8 @@ for transaction in transactions:
     for line in transaction_lines:
         if transaction_line.strip().startswith(';invoiced'):
             transaction_invoiced = True
+            
+    print description_line, transaction_invoiced
     
     
 
