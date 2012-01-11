@@ -25,7 +25,7 @@ for transaction in transactions:
         elif not transaction_amount and (len(line.rsplit('  ',1)) > 1):
             transaction_amount = line.rsplit('  ',1)[-1]
             
-    print description_line, transaction_amount, transaction_invoiced
+    print description_line, transaction_amount
     print transaction_dict
     #invoice_generated = invoice_template.generate(o=ledger_invoice).render()
     #file(description_line + '.odt', 'wb').write(invoice_generated.getvalue())
