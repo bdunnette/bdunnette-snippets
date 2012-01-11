@@ -21,8 +21,9 @@ for transaction in transactions:
     desc_line = transaction_lines[0].split(' ', 1)
     transaction_dict['date'] = desc_line[0]
     for sep in description_separators:
+        print sep, desc_line
+            
         if desc_line[1].find(sep):
-            print sep, desc_line
             desc_split = desc_line[1].rsplit(sep)
             transaction_dict['customer'] = desc_split[0]
             transaction_dict['description'] = desc_split[1]
