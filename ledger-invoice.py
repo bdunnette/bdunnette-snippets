@@ -27,7 +27,7 @@ for transaction in transactions:
         elif (not transaction_dict['total']) and (len(line.rsplit('  ',1)) > 1):
             transaction_dict['total'] = line.rsplit('  ',1)[-1]
             
-    print description_line, transaction_amount
+    print desc_line, transaction_amount
     print transaction_dict
     #invoice_generated = invoice_template.generate(invoice=transaction_dict).render()
     #file(description_line + '.odt', 'wb').write(invoice_generated.getvalue())
