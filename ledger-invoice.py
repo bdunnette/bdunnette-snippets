@@ -15,7 +15,7 @@ for transaction in transactions:
     #The first line of each transaction is its overall description
     description_line = transaction_lines[0]
     for line in transaction_lines:
-        if transaction_line.strip().startswith(';invoiced'):
+        if line.strip().startswith(';invoiced'):
             transaction_invoiced = True
             
     print description_line, transaction_invoiced
