@@ -24,7 +24,9 @@ for transaction in transactions:
     
     for sep in description_separators:
         if sep in desc_line[1]:
-            print desc_line[1].split(sep)
+            desc_split = desc_line[1].split(sep)
+            transaction_dict['customer'] = desc_split[0]
+            transaction_dict['description'] = desc_split[1]
     
     #Check the remaining lines to see if this transaction has already been invoiced
     for line in transaction_lines[1:]:
