@@ -21,7 +21,7 @@ for transaction in transactions:
             transaction_invoiced = True
             
     print description_line, transaction_invoiced
-    invoice_generated = invoice.generate(o=bonham_invoice).render()
+    invoice_generated = invoice.generate(o=ledger_invoice).render()
     file(description_line + '.odt', 'wb').write(invoice_generated.getvalue())
 
 
