@@ -22,6 +22,7 @@ for transaction in transactions:
     for line in transaction_lines[1:]:
         if line.strip().replace(' ','').startswith(';invoiced'):
             transaction_invoiced = True
+            transaction_object['invoiced'] = True
         elif not transaction_amount and (len(line.rsplit('  ',1)) > 1):
             transaction_amount = line.rsplit('  ',1)[-1]
             
