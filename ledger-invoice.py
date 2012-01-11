@@ -4,8 +4,10 @@ from relatorio.templates.opendocument import Template
 from data import bonham_invoice
 import sys
 
+transaction_separator = "\n\n"
+
 infile = file(sys.argv[1]).read()
-transactions = infile.split('\n\n')
+transactions = infile.split(transaction_separator)
 
 for line in transactions:
     print line.splitlines()
