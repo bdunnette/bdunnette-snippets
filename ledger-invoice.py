@@ -17,8 +17,8 @@ for transaction in transactions:
     transaction_amount = False
     transaction_lines = transaction.splitlines()
     #The first line of each transaction is its overall description
-    desc_line = transaction_lines[0].split()
-    transaction_dict['date'] = desc_line[0]
+    desc_line = transaction_lines[0]
+    transaction_dict['date'] = desc_line.split(' ')[0]
     
     #Check the remaining lines to see if this transaction has already been invoiced
     for line in transaction_lines[1:]:
