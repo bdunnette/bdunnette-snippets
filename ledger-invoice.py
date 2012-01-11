@@ -6,6 +6,8 @@ import sys
 
 transaction_separator = "\n\n"
 
+invoice = Template(source=None, filepath='invoice.odt')
+
 infile = file(sys.argv[1]).read()
 transactions = infile.split(transaction_separator)
 
@@ -19,11 +21,7 @@ for transaction in transactions:
             transaction_invoiced = True
             
     print description_line, transaction_invoiced
-    
-    
-
-basic = Template(source=None, filepath='invoice.odt')
-basic_generated = basic.generate(o=bonham_invoice).render()
-#file('bonham_invoice.odt', 'wb').write(basic_generated.getvalue())
+    invoice_generated = invoice.generate(o=bonham_invoice).render()
+    file(description_line + '.odt', 'wb').write(invoice_generated.getvalue())
 
 
