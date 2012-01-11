@@ -23,7 +23,7 @@ for transaction in transactions:
         if line.strip().replace(' ','').startswith(';invoiced'):
             transaction_dict['invoiced'] = True
         elif not transaction_amount and (len(line.rsplit('  ',1)) > 1):
-            transaction_amount = line.rsplit('  ',1)[-1]
+            transaction_dict['total'] = line.rsplit('  ',1)[-1]
             
     print description_line, transaction_amount
     print transaction_dict
