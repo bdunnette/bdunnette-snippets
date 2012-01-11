@@ -5,7 +5,7 @@ from data import bonham_invoice
 import sys
 
 infile = file(sys.argv[1]).read()
-transactions = infile.split('\n\n')
+transactions = infile.split('\n\n').strip
 print transactions
 
 basic = Template(source=None, filepath='invoice.odt')
