@@ -22,7 +22,7 @@ for transaction in transactions:
     transaction_dict['date'] = desc_line[0]
     for sep in description_separators:
         if desc_line[1].find(sep):
-            print "Found " + sep + " in line " + desc_line
+            print "Found " + sep + " in line " + str(desc_line)
             desc_split = desc_line[1].split(sep)
             transaction_dict['customer'] = desc_split[0]
             transaction_dict['description'] = desc_split[1]
