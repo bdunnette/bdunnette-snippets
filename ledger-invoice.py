@@ -9,8 +9,8 @@ transaction_separator = "\n\n"
 infile = file(sys.argv[1]).read()
 transactions = infile.split(transaction_separator)
 
-for line in transactions:
-    print line.splitlines()
+for transaction in transactions:
+    print transaction.splitlines()
 
 basic = Template(source=None, filepath='invoice.odt')
 basic_generated = basic.generate(o=bonham_invoice).render()
