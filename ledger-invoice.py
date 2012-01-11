@@ -11,7 +11,7 @@ infile = file(sys.argv[1]).read()
 transactions = infile.split(transaction_separator)
 
 for transaction in transactions:
-    transaction_object = dict()
+    transaction_dict = dict()
     transaction_invoiced = False
     transaction_amount = False
     transaction_lines = transaction.splitlines()
@@ -22,11 +22,12 @@ for transaction in transactions:
     for line in transaction_lines[1:]:
         if line.strip().replace(' ','').startswith(';invoiced'):
             transaction_invoiced = True
-            transaction_object['invoiced'] = True
+            transaction_dict['invoiced'] = True
         elif not transaction_amount and (len(line.rsplit('  ',1)) > 1):
             transaction_amount = line.rsplit('  ',1)[-1]
             
     print description_line, transaction_amount, transaction_invoiced
+    print transaction_dict
     #invoice_generated = invoice_template.generate(o=ledger_invoice).render()
     #file(description_line + '.odt', 'wb').write(invoice_generated.getvalue())
 
