@@ -21,6 +21,7 @@ for transaction in transactions:
     desc_line = transaction_lines[0].split(' ', 1)
     transaction_dict['date'] = desc_line[0]
     for sep in description_separators:
+        print desc_line[1].split(sep)
         if desc_line[1].split(sep):
             print "Found " + sep + " in line " + str(desc_line)
             desc_split = desc_line[1].split(sep)
