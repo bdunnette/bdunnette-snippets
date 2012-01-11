@@ -20,15 +20,13 @@ for transaction in transactions:
     #The first line of each transaction is its overall description
     desc_line = transaction_lines[0].split(' ', 1)
     transaction_dict['date'] = desc_line[0]
+    transaction_dict['customer'] = desc_line[1]
+    
     for sep in description_separators:
         print desc_line[1].find(sep)
         if desc_line[1].find(sep):
             print sep
             transaction_dict['customer'] = desc_line[1].split(sep)[0]
-    
-    if not transaction_dict['customer']:
-            transaction_dict['customer'] = desc_line[1]
-    
     
     #Check the remaining lines to see if this transaction has already been invoiced
     for line in transaction_lines[1:]:
