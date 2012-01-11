@@ -37,7 +37,7 @@ for transaction in transactions:
             
     print transaction_dict
     invoice_generated = invoice_template.generate(invoice=transaction_dict).render()
-    outfile = transaction_dict['date'].replace('/', '-') + transaction_dict['customer'] + '.odt'
+    outfile = transaction_dict['date'].replace('/', '-') + transaction_dict['customer'].replace(' ', '_') + '.odt'
     outfile = outfile.strip()
     file(outfile, 'wb').write(invoice_generated.getvalue())
 
