@@ -23,7 +23,7 @@ for transaction in transactions:
     transaction_dict['customer'] = desc_line[1]
     
     for sep in description_separators:
-        if desc_line[1].find(sep):
+        if sep in desc_line[1]:
             print desc_line[1].split(sep)
     
     #Check the remaining lines to see if this transaction has already been invoiced
