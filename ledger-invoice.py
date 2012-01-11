@@ -23,7 +23,8 @@ for transaction in transactions:
     for sep in description_separators:
         if desc_line[1].find(sep):
             transaction_dict['customer'] = desc_line[1].split(sep)[0]
-        else:
+    
+    if not transaction_dict['customer']:
             transaction_dict['customer'] = desc_line[1]
     
     
