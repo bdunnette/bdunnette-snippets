@@ -1,17 +1,17 @@
 #!/usr/bin/python
 
 from relatorio.templates.opendocument import Template
-from data import bonham_invoice
 import sys
 
 transaction_separator = "\n\n"
 
-invoice = Template(source=None, filepath='invoice.odt')
+invoice_template = Template(source=None, filepath='invoice.odt')
 
 infile = file(sys.argv[1]).read()
 transactions = infile.split(transaction_separator)
 
 for transaction in transactions:
+    transaction_object = dict()
     transaction_invoiced = False
     transaction_amount = False
     transaction_lines = transaction.splitlines()
@@ -26,7 +26,7 @@ for transaction in transactions:
             transaction_amount = line.rsplit('  ',1)[-1]
             
     print description_line, transaction_amount, transaction_invoiced
-    #invoice_generated = invoice.generate(o=ledger_invoice).render()
+    #invoice_generated = invoice_template.generate(o=ledger_invoice).render()
     #file(description_line + '.odt', 'wb').write(invoice_generated.getvalue())
 
 
