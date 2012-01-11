@@ -23,7 +23,7 @@ for transaction in transactions:
             print line.strip().split()
             
     print description_line, transaction_invoiced
-    invoice_generated = invoice.generate(o=ledger_invoice).render()
-    file(description_line + '.odt', 'wb').write(invoice_generated.getvalue())
+    #invoice_generated = invoice.generate(o=ledger_invoice).render()
+    #file(description_line + '.odt', 'wb').write(invoice_generated.getvalue())
 
 
