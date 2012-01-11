@@ -26,7 +26,7 @@ for transaction in transactions:
             print "Found " + sep + " in line " + str(desc_line)
             desc_split = desc_line[1].split(sep)
             transaction_dict['customer'] = desc_split[0]
-            transaction_dict['description'] = desc_split[1]
+            #transaction_dict['description'] = desc_split[1]
         else:
             transaction_dict['customer'] = desc_line[1]
     
