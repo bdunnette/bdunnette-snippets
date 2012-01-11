@@ -13,7 +13,7 @@ transactions = infile.split(transaction_separator)
 
 for transaction in transactions:
     transaction_dict = dict()
-    transaction_dict['invoiced'] = False
+    transaction_invoiced = False
     transaction_dict['total'] = False
     transaction_amount = False
     transaction_lines = transaction.splitlines()
