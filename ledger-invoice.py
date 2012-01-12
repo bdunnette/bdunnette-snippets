@@ -2,6 +2,7 @@
 
 from relatorio.templates.opendocument import Template
 import sys
+import fileinput
 
 transaction_separator = "\n\n"
 description_separators = ['|', ':']
@@ -15,7 +16,7 @@ for transaction in transactions:
     transaction_dict = dict()
     transaction_dict['invoiced'] = False
     transaction_dict['total'] = False
-    transaction_amount = False
+    transaction_dict['description'] = 'Miscellaneous Hardware'
     transaction_lines = transaction.splitlines()
     #The first line of each transaction is its overall description
     desc_line = transaction_lines[0].split(' ', 1)
@@ -29,6 +30,7 @@ for transaction in transactions:
             transaction_dict['description'] = desc_split[1].strip()
     
     #Check the remaining lines to see if this transaction has already been invoiced
+    #Still need a way to write this line to file once transaction is invoiced - maybe using fileinput, as suggested here: http://stackoverflow.com/a/1325927
     for line in transaction_lines[1:]:
         if line.strip().replace(' ','').startswith(';invoiced'):
             transaction_dict['invoiced'] = True
