@@ -26,7 +26,7 @@ for transaction in transactions:
             transaction_dict['description'] = desc_split[1].strip()
     
     for line in transaction_lines[1:]:
-        if (not transaction_dict['total']) and (len(line.rsplit('  ',1)) > 1) and (not line.starts_with(';')):
+        if (not transaction_dict['total']) and (len(line.rsplit('  ',1)) > 1) and (not line.startswith(';')):
             transaction_dict['total'] = line.rsplit('  ',1)[-1]
             
     print transaction_dict
