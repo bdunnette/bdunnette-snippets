@@ -12,8 +12,7 @@ try:
     Product = Model.get('product.product')
     products = Product.find()
     for product in products:
-        print product()
-        print product.code, product.name
+        print product.code, product.name, product.write_date
     cur = con.cursor(lemondb.cursors.DictCursor)
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
