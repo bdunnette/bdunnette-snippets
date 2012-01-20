@@ -7,7 +7,7 @@ con = None
 
 try:
     con = lemondb.connect('localhost', 'root', 'test', 'lemondb')
-    cur = con.cursor()
+    cur = con.cursor(lemondb.cursors.DictCursor)
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
     for row in data:
