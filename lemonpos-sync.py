@@ -13,7 +13,8 @@ try:
     config = config.set_trytond(database_name="test", user="admin", password="test")
     Product = Model.get('product.product')
     party = Party.find([('name', '=', 'Buster Bot')])
-    print partycur = lcon.cursor(lemondb.cursors.DictCursor)
+    print party
+    cur = lcon.cursor(lemondb.cursors.DictCursor)
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
     for row in data:
