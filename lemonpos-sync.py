@@ -12,12 +12,11 @@ try:
     Product = Model.get('product.product')
     products = Product.find()
     for product in products:
-        print product.code, product.name, product.write_date
+        print product.code, product.name, product.write_date, product.create_date
     cur = con.cursor(lemondb.cursors.DictCursor)
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
     for row in data:
-        print row
         print "%s: %s (%s)" % (row["code"], row["name"], row["price"])
     
 except lemondb.Error, e:
