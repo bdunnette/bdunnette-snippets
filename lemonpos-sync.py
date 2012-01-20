@@ -9,7 +9,7 @@ tcon = None
 
 try:
     lcon = lemondb.connect(host="localhost", user="root", passwd="test", db="lemondb")
-    tcon = trytondb.connect(host="localhost", user="tryton", password="test", database="fgtc")
+    tcon = trytondb.connect(host="localhost", user="tryton", password="tryton", database="fgtc")
     cur = lcon.cursor(lemondb.cursors.DictCursor)
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
