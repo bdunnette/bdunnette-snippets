@@ -1,13 +1,16 @@
 #!/usr/bin/python
 
 import MySQLdb as lemondb
+import psycopg2 as trytondb
 import sys
 
-con = None
+lcon = None
+tcon = None
 
 try:
-    con = lemondb.connect('localhost', sys.argv[1], sys.argv[2], 'lemondb')
-    cur = con.cursor(lemondb.cursors.DictCursor)
+    lcon = lemondb.connect('localhost', sys.argv[1], sys.argv[2], 'lemondb')
+    tcon = trytondb.connect('localhost', 'tryton', 'test', 'fgtc')
+    cur = lcon.cursor(lemondb.cursors.DictCursor)
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
     for row in data:
@@ -18,5 +21,5 @@ except lemondb.Error, e:
     sys.exit(1)
     
 finally:
-    if con:
-        con.close()
+    if lcon:
+        lcon.close()
