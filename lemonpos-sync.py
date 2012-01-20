@@ -12,8 +12,9 @@ try:
     lcon = lemondb.connect(host="localhost", user="root", passwd="test", db="lemondb")
     config = config.set_xmlrpc("http://admin:test@localhost:8069/test")
     Party = Model.get('party.party')
-    party = Party.find()
-    print party
+    parties = Party.find()
+    for party in parties:
+        print party, party._fields
     cur = lcon.cursor(lemondb.cursors.DictCursor)
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
