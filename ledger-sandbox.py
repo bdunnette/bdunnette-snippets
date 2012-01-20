@@ -11,7 +11,6 @@ transactions = infile.split(transaction_separator)
 
 for transaction in transactions:
     transaction_dict = dict()
-    transaction_dict['invoiced'] = False
     transaction_dict['total'] = False
     transaction_dict['description'] = 'Miscellaneous Hardware'
     transaction_lines = transaction.splitlines()
@@ -27,8 +26,6 @@ for transaction in transactions:
             transaction_dict['description'] = desc_split[1].strip()
     
     for line in transaction_lines[1:]:
-        if line.strip().replace(' ','').startswith(';invoiced'):
-            transaction_dict['invoiced'] = True
         elif (not transaction_dict['total']) and (len(line.rsplit('  ',1)) > 1):
             transaction_dict['total'] = line.rsplit('  ',1)[-1]
             
