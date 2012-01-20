@@ -9,3 +9,4 @@ class Product(object):
 database = create_database("mysql://root:test@localhost:3306/lemondb")
 store = Store(database)
 product = store.find(Product, Product.name == u"GeekBox").one()
+print product
