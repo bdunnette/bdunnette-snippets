@@ -1,12 +1,17 @@
-from storm.locals import *
+#!/usr/bin/python
 
-class Product(object):
-    __storm_table__ = "products"
-    id = Int(primary=True)
-    name = Unicode()
-    price = Int()
+import MySQLdb as lemondb
+import sys
 
-database = create_database("mysql://root:test@localhost:3306/lemondb")
-store = Store(database)
-product = store.find(Product, Product.name == u"GeekBox").one()
-print product
+con = None
+
+try:
+    con = lemondb.connect('localhost', 'root', 'test', 'lemondb')
+    cur = con.cursor()
+    cur.execute("SELECT * FROM products")
+    data = cur.fetchone()
+    print data
+    
+except lemondb.Error, e:
+    print "Error %d: %s" % (e.args[0],e.args[1])
+    sys.exit(1)
