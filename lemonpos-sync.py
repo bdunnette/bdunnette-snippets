@@ -10,10 +10,10 @@ tcon = None
 
 try:
     lcon = lemondb.connect(host="localhost", user="root", passwd="test", db="lemondb")
-    config = config.set_trytond(database_name="test", user="admin", password="test")
-    Product = Model.get('product.product')
-    #party = Party.find([('name', '=', 'Buster Bot')])
-    #print party
+    config = config.set_xmlrpc('http://admin:test@localhost:8069')
+    Party = Model.get('party.party')
+    party = Party.find([('name', '=', 'Buster Bot')])
+    print party
     cur = lcon.cursor(lemondb.cursors.DictCursor)
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
