@@ -9,7 +9,7 @@ try:
     con = lemondb.connect('localhost', 'root', 'test', 'lemondb')
     cur = con.cursor()
     cur.execute("SELECT * FROM products")
-    data = cur.fetchone()
+    data = cur.fetchall()
     print data
     
 except lemondb.Error, e:
