@@ -14,7 +14,7 @@ try:
     Party = Model.get('party.party')
     parties = Party.find()
     for party in parties:
-        print party, party._fields
+        print party
     cur = lcon.cursor(lemondb.cursors.DictCursor)
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
