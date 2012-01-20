@@ -10,7 +10,8 @@ try:
     cur = con.cursor()
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
-    print data
+    for row in data:
+        print row
     
 except lemondb.Error, e:
     print "Error %d: %s" % (e.args[0],e.args[1])
