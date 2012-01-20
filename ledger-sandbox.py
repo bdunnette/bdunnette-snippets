@@ -27,6 +27,6 @@ for transaction in transactions:
     
     for line in transaction_lines[1:]:
         if (not transaction_dict['total']) and (len(line.rsplit('  ',1)) > 1):
-            transaction_dict['total'] = long(line.rsplit('  ',1)[-1])
+            transaction_dict['total'] = line.rsplit('  ',1)[-1]
             
     print transaction_dict
