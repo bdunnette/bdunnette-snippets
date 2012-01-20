@@ -2,6 +2,7 @@
 
 import MySQLdb as lemondb
 import psycopg2 as trytondb
+from proteus import config, Model
 import sys
 
 lcon = None
@@ -9,8 +10,10 @@ tcon = None
 
 try:
     lcon = lemondb.connect(host="localhost", user="root", passwd="test", db="lemondb")
-    tcon = trytondb.connect(host="localhost", user="tryton", password="tryton", database="fgtc")
-    cur = lcon.cursor(lemondb.cursors.DictCursor)
+    config = config.set_xmlrpc('http://admin:test@localhost:8069')
+    Product = Model.get('product.product')
+    party = Party.find([('name', '=', 'Buster Bot')])
+    print partycur = lcon.cursor(lemondb.cursors.DictCursor)
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
     for row in data:
