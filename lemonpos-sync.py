@@ -17,6 +17,7 @@ try:
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
     for row in data:
+        print row
         print "%s: %s (%s)" % (row["code"], row["name"], row["price"])
     
 except lemondb.Error, e:
