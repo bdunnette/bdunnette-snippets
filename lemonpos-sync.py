@@ -6,7 +6,7 @@ import sys
 con = None
 
 try:
-    con = lemondb.connect('localhost', sys.argv[0], sys.argv[1], 'lemondb')
+    con = lemondb.connect('localhost', sys.argv[1], sys.argv[2], 'lemondb')
     cur = con.cursor(lemondb.cursors.DictCursor)
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
