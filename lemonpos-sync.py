@@ -1,21 +1,19 @@
 #!/usr/bin/python
 
 import MySQLdb as lemondb
-import psycopg2 as trytondb
 from proteus import config, Model
 import sys
 
-lcon = None
-tcon = None
+con = None
 
 try:
-    lcon = lemondb.connect(host="localhost", user="root", passwd="test", db="lemondb")
+    con = lemondb.connect(host="localhost", user="root", passwd="test", db="lemondb")
     config = config.set_xmlrpc("http://admin:test@localhost:8069/test")
     Product = Model.get('product.product')
     products = Product.find()
     for product in products:
         print product.code, product.name
-    cur = lcon.cursor(lemondb.cursors.DictCursor)
+    cur = con.cursor(lemondb.cursors.DictCursor)
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
     for row in data:
@@ -26,5 +24,6 @@ except lemondb.Error, e:
     sys.exit(1)
     
 finally:
-    if lcon:
-        lcon.close()
+    #If connection to LemonPOS MySQL database is still open, close it
+    if con:
+        con.close()
