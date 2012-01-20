@@ -13,7 +13,7 @@ try:
     config = config.set_xmlrpc("http://admin:test@localhost:8069/test")
     Party = Model.get('party.party')
     #party = Party.find([('name', '=', 'Buster Bot')])
-    print Party
+    print Party.values()
     cur = lcon.cursor(lemondb.cursors.DictCursor)
     cur.execute("SELECT * FROM products")
     data = cur.fetchall()
