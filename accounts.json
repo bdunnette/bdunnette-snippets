@@ -1,0 +1,6 @@
+{
+    "accounts": [
+        {"ofx-account": "1017146-S14", "ledger-account": "assets:checking"},
+        {"ofx-account": "1017146-S1", "ledger-account": "assets:savings"}
+    ]
+}
