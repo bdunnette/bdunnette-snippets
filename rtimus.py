@@ -1,29 +1,16 @@
 #!/usr/bin/python
-import sys,os,xmpp
 
-if len(sys.argv) < 2:
-    print "Syntax: %s JID text" % sys.argv[0]
-    sys.exit(0)
+import xmpp
+import sys
 
-tojid=sys.argv[1]
-text=' '.join(sys.argv[2:])
+login = 'dunn0172'
+pwd   = sys.argv[1]
 
-jidparams={}
-if os.access(os.environ['HOME']+'/.xsend',os.R_OK):
-    for ln in open(os.environ['HOME']+'/.xsend').readlines():
-        key,val=ln.strip().split('=',1)
-        jidparams[key.lower()]=val
-	
-for mandatory in ['jid','password']:
-    if mandatory not in jidparams.keys():
-	open(os.environ['HOME']+'/.xsend','w').write('#JID=romeo@montague.net\n#PASSWORD=juliet\n')
-	print 'Please ensure the ~/.xsend file has valid JID for sending messages.'
-	sys.exit(0)
+cnx = xmpp.Client('jabber.umn.edu')
 
-jid=xmpp.protocol.JID(jidparams['jid'])
-cl=xmpp.Client('gmail.com',debug=[])
-cl.connect()
-cl.auth(jid.getNode(),jidparams['password'])
-#cl.sendInitialPresence()
-cl.send(xmpp.protocol.Message(tojid,text))
+cnx.connect( server=('jabber.umn.edu', 5222))
 
+cnx.auth(login, pwd, 'bot', sasl=0)
+
+cnx.send(xmpp.Message("dunn0172@jabber.umn.edu", "Hello World from Python"))
+#cnx.disconnect()
