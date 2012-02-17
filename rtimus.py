@@ -2,9 +2,10 @@
 
 import xmpp
 import sys
+import getpass
 
-login = 'dunn0172'
-pwd   = sys.argv[1]
+login = getpass.getuser()
+pwd   = getpass.getpass()
 
 cnx = xmpp.Client('jabber.umn.edu')
 
