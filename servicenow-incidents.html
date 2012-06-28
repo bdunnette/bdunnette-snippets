@@ -1,0 +1,17 @@
+<html>
+    <head>
+        <title>ServiceNow Incidents</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                 $('body').append('test');
+                 $.get('https://umntst.service-now.com/incident.do?XML&sysparm_action=getRecords&sysparm_query=assignment_group.name=CLA%20East%20Bank%20Field%20Techs', function(data) {
+                    $('body').append(data);
+                 });
+            });
+        </script>
+    </head>
+    <body>
+        <a href="">Link</a>
+    </body>
+</html>  
